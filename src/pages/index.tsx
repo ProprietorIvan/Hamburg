@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import {
   ArrowRight,
   Check,
@@ -8,10 +9,22 @@ import {
   Database,
   Heart,
   ChevronDown,
+  Menu,
+  X,
+  Sprout,
+  Facebook,
+  Instagram,
+  Phone,
+  Mail,
+  MapPin,
+  ExternalLink,
 } from "lucide-react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Navigation from "@/components/Navigation"; // Existing component
+import Footer from "@/components/Footer"; // Existing component
 
+// Feature Component
 interface FeatureProps {
   icon: React.ReactNode;
   title: string;
@@ -40,6 +53,7 @@ const Feature: React.FC<FeatureProps> = ({
   </motion.div>
 );
 
+// Category Component
 interface CategoryProps {
   title: string;
   description: string;
@@ -74,11 +88,13 @@ const Category: React.FC<CategoryProps> = ({
   </motion.div>
 );
 
+// Main Landing Page Component
 const HamburgSeedDispensaryLandingPage = () => {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 300], [1, 0.2]);
   const heroScale = useTransform(scrollY, [0, 300], [1, 1.05]);
   const [showSuccess, setShowSuccess] = useState(false);
+  const { asPath } = useRouter();
 
   useEffect(() => {
     window.scrollTo(0, 0); // Reset scroll on load
@@ -88,12 +104,13 @@ const HamburgSeedDispensaryLandingPage = () => {
     window.location.href = "tel:+49-123-456789";
   };
 
-  const pageTitle = "Hamburg Seed Vault - Premium Cannabis Seeds";
+  const pageTitle = "Hamburg Seed Vault - Shop Premium Cannabis Seeds";
   const pageDescription =
-    "Discover the world’s finest cannabis seeds at Hamburg Seed Vault. Engineered for collectors and enthusiasts, our premium genetics redefine excellence.";
+    "Shop the world’s finest cannabis seeds at Hamburg Seed Vault. Premium genetics for collectors and growers, available now with expert curation.";
   const siteUrl = "https://hamburgseedvault.de";
-  const canonicalUrl = `${siteUrl}/`; // Assuming this is the homepage
+  const canonicalUrl = `${siteUrl}${asPath}`;
   const keywords = [
+    "shop cannabis seeds",
     "premium cannabis seeds",
     "hamburg seed vault",
     "cannabis genetics",
@@ -102,11 +119,9 @@ const HamburgSeedDispensaryLandingPage = () => {
     "feminized seeds",
     "therapeutic seeds",
     "collector seeds",
-    "germany cannabis",
-    "seed dispensary",
+    "germany cannabis shop",
   ].join(", ");
 
-  // Structured Data (JSON-LD) for Organization and Product
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -114,7 +129,7 @@ const HamburgSeedDispensaryLandingPage = () => {
         "@type": "Organization",
         name: "Hamburg Seed Vault",
         url: siteUrl,
-        logo: `${siteUrl}/images/logo.webp`, // Replace with actual logo path if available
+        logo: `${siteUrl}/images/logo.webp`,
         description: pageDescription,
         address: {
           "@type": "PostalAddress",
@@ -128,15 +143,21 @@ const HamburgSeedDispensaryLandingPage = () => {
         },
       },
       {
-        "@type": "Product",
-        name: "Premium Cannabis Seeds",
-        description:
-          "A curated collection of autoflowering, feminized, therapeutic, and collector’s cannabis seeds.",
-        brand: {
-          "@type": "Brand",
-          name: "Hamburg Seed Vault",
+        "@type": "WebSite",
+        name: "Hamburg Seed Vault",
+        url: siteUrl,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${siteUrl}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
         },
-        category: "Cannabis Seeds",
+      },
+      {
+        "@type": "OnlineStore",
+        name: "Hamburg Seed Vault",
+        url: siteUrl,
+        description:
+          "Online shop for premium cannabis seeds including autoflowering, feminized, therapeutic, and collector’s varieties.",
         image: `${siteUrl}/images/hero-seeds.webp`,
         offers: {
           "@type": "Offer",
@@ -152,25 +173,25 @@ const HamburgSeedDispensaryLandingPage = () => {
     {
       icon: <Dna className="w-6 h-6" />,
       title: "Genetic Precision",
-      description: "Every seed is a masterpiece of stability and potency.",
+      description: "Seeds crafted for stability and peak potency.",
       delay: 1,
     },
     {
       icon: <FlaskConical className="w-6 h-6" />,
-      title: "Lab Perfected",
-      description: "Tested for purity, viability, and performance.",
+      title: "Lab Tested",
+      description: "Every batch verified for quality and performance.",
       delay: 2,
     },
     {
       icon: <Database className="w-6 h-6" />,
-      title: "Heritage Vault",
-      description: "Rare strains preserved for generations.",
+      title: "Rare Strains",
+      description: "Exclusive genetics you won’t find anywhere else.",
       delay: 3,
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      title: "Collector’s Craft",
-      description: "Curated for those who demand the best.",
+      title: "Shop with Confidence",
+      description: "Curated by experts, delivered to you.",
       delay: 4,
     },
   ];
@@ -178,25 +199,25 @@ const HamburgSeedDispensaryLandingPage = () => {
   const categories = [
     {
       title: "Autoflowering Seeds",
-      description: "Fast. Compact. Powerful. Harvest in just 60 days.",
+      description: "Fast-growing seeds, ready in just 60 days.",
       image: "/images/autoflower.webp",
       delay: 1,
     },
     {
       title: "Feminized Seeds",
-      description: "99.9% female. Unmatched consistency and yield.",
+      description: "99.9% female plants for maximum yield.",
       image: "/images/feminized.webp",
       delay: 2,
     },
     {
       title: "Therapeutic Seeds",
-      description: "Balanced CBD profiles for targeted wellness.",
+      description: "CBD-rich seeds for wellness and balance.",
       image: "/images/therapeutic.webp",
       delay: 3,
     },
     {
       title: "Collector’s Seeds",
-      description: "Rare genetics. Limited editions. Timeless value.",
+      description: "Rare, limited-edition genetics for enthusiasts.",
       image: "/images/collector.webp",
       delay: 4,
     },
@@ -211,7 +232,6 @@ const HamburgSeedDispensaryLandingPage = () => {
       }}
     >
       <Head>
-        {/* Basic Meta Tags */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={keywords} />
@@ -219,11 +239,7 @@ const HamburgSeedDispensaryLandingPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
         <meta name="author" content="Hamburg Seed Vault" />
-
-        {/* Canonical URL */}
         <link rel="canonical" href={canonicalUrl} />
-
-        {/* Open Graph Tags */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
@@ -240,8 +256,6 @@ const HamburgSeedDispensaryLandingPage = () => {
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Hamburg Seed Vault" />
         <meta property="og:locale" content="en_US" />
-
-        {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
@@ -253,13 +267,14 @@ const HamburgSeedDispensaryLandingPage = () => {
           name="twitter:image:alt"
           content="Premium Cannabis Seeds from Hamburg Seed Vault"
         />
-
-        {/* Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
+
+      {/* Navigation */}
+      <Navigation transparent currentPage={asPath} />
 
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
@@ -269,7 +284,7 @@ const HamburgSeedDispensaryLandingPage = () => {
         >
           <Image
             src="/images/hero-seeds.webp"
-            alt="Premium Cannabis Seeds - Hamburg Seed Vault"
+            alt="Shop Premium Cannabis Seeds - Hamburg Seed Vault"
             layout="fill"
             objectFit="cover"
             className="opacity-70"
@@ -283,7 +298,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-5xl md:text-8xl font-bold leading-tight"
           >
-            The World’s Finest
+            Shop the Finest
             <br />
             Cannabis Seeds
           </motion.h1>
@@ -293,8 +308,8 @@ const HamburgSeedDispensaryLandingPage = () => {
             transition={{ duration: 1, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mt-6 max-w-2xl mx-auto"
           >
-            Engineered with precision. Crafted for collectors. Hamburg Seed
-            Vault redefines genetic excellence.
+            Your one-stop shop for premium cannabis seeds. Rare genetics,
+            expertly curated, ready to grow.
           </motion.p>
           <motion.button
             initial={{ opacity: 0, y: 50 }}
@@ -305,7 +320,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             onClick={handleContact}
             className="mt-10 bg-white text-black px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-200 transition-colors duration-300"
           >
-            Discover Now
+            Shop Now
           </motion.button>
         </div>
         <motion.div
@@ -318,7 +333,7 @@ const HamburgSeedDispensaryLandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Why Seeds Matter Section */}
+      {/* Why Shop With Us Section */}
       <section className="py-24 bg-gray-900">
         <div className="max-w-[1920px] mx-auto px-6">
           <motion.h2
@@ -328,7 +343,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-center mb-12"
           >
-            Why Seeds Matter
+            Why Shop With Us
           </motion.h2>
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <motion.div
@@ -340,7 +355,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             >
               <Image
                 src="/images/seed-closeup.webp"
-                alt="Close-Up of Premium Cannabis Seed"
+                alt="Close-Up of Premium Cannabis Seed for Sale"
                 width={800}
                 height={600}
                 className="rounded-xl shadow-lg"
@@ -354,15 +369,14 @@ const HamburgSeedDispensaryLandingPage = () => {
               className="md:w-1/2"
             >
               <p className="text-lg text-gray-300 mb-6">
-                Seeds are the foundation of cannabis innovation. At Hamburg Seed
-                Vault, we don’t just sell seeds—we preserve the future. Each one
-                is a genetic blueprint, meticulously selected and tested to
-                deliver unmatched quality and potential.
+                At Hamburg Seed Vault, we’re your premier shop for cannabis
+                seeds. Every strain is hand-picked, lab-tested, and shipped
+                fast, delivering top-tier genetics straight to your door.
               </p>
               <p className="text-lg text-gray-300">
-                Whether you’re a collector seeking rare strains or an enthusiast
-                building your legacy, our seeds are engineered to perform. This
-                isn’t just cultivation—it’s a revolution.
+                From rare collector’s seeds to high-yield autoflowers, we’ve got
+                what you need to grow exceptional cannabis. Shop today and
+                elevate your garden.
               </p>
             </motion.div>
           </div>
@@ -379,7 +393,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-center mb-16"
           >
-            Built for Perfection
+            Our Promise
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {features.map((feature, index) => (
@@ -399,7 +413,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-center mb-16"
           >
-            Genetic Vault
+            Shop Our Collection
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {categories.map((category, index) => (
@@ -419,7 +433,7 @@ const HamburgSeedDispensaryLandingPage = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-8"
           >
-            Unlock the Future
+            Start Growing Today
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -428,7 +442,8 @@ const HamburgSeedDispensaryLandingPage = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto"
           >
-            Visit our Hamburg Vault. Explore the pinnacle of cannabis genetics.
+            Explore our premium seed shop and order the best cannabis genetics
+            in Hamburg.
           </motion.p>
           <motion.button
             initial={{ opacity: 0, y: 20 }}
@@ -457,7 +472,7 @@ const HamburgSeedDispensaryLandingPage = () => {
               Inquiry Sent
             </h3>
             <p className="text-gray-300">
-              We’ll reach out soon. Expect greatness.
+              We’ll reach out soon to help you shop our seeds.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -470,6 +485,9 @@ const HamburgSeedDispensaryLandingPage = () => {
           </motion.div>
         </div>
       )}
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
