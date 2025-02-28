@@ -6,8 +6,8 @@ const nextConfig = {
     locales: ['en', 'de', 'fr'],
     // Default locale when path doesn't include locale
     defaultLocale: 'en',
-    // Enable automatic locale detection based on browser settings and geographic location
-    localeDetection: true,
+    // Set to false to fix the error
+    localeDetection: false,
   },
 }
 

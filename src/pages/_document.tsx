@@ -1,16 +1,30 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import Footer from '@/components/Footer';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
 
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-         <Footer />
-      </body>
-    </Html>
-  )
+  render() {
+    const { locale } = this.props.__NEXT_DATA__;
+
+    return (
+      <Html lang={locale || "en"}>
+        <Head>{/* Add any additional meta tags or fonts here */}</Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
+
+export default MyDocument;
