@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sprout } from "lucide-react";
 import Image from "next/image";
 
 interface NavigationProps {
@@ -19,10 +19,10 @@ const Navigation = ({
 
   const navLinks = [
     { text: "Home", url: "/" },
-    { text: "Services", url: "/services" },
+    { text: "Collection", url: "/collection" },
     { text: "About", url: "/about" },
     { text: "Contact", url: "/contact" },
-    { text: "Gallery", url: "/gallery" },
+    { text: "FAQ", url: "/faq" },
   ];
 
   return (
@@ -37,14 +37,19 @@ const Navigation = ({
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="relative w-48 h-12">
-              <Image
-                src="/logo.webp"
-                alt="Drywall Burnaby"
-                fill
-                className="object-contain object-left"
-                priority
+            <div className="flex items-center">
+              <Sprout
+                className={`h-8 w-8 ${
+                  transparent ? "text-white" : "text-green-700"
+                }`}
               />
+              <span
+                className={`ml-2 text-xl font-bold ${
+                  transparent ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Hamburg Seeds
+              </span>
             </div>
           </div>
 
@@ -59,9 +64,9 @@ const Navigation = ({
                     e.preventDefault();
                     push(link.url);
                   }}
-                  className={`text-base font-medium hover:text-gray-600 transition-colors ${
+                  className={`text-base font-medium hover:text-green-600 transition-colors ${
                     transparent
-                      ? "text-white hover:text-gray-200"
+                      ? "text-white hover:text-green-200"
                       : "text-gray-900"
                   }`}
                 >
@@ -69,10 +74,10 @@ const Navigation = ({
                 </a>
               ))}
               <a
-                href="tel:+1(778)658-0035"
-                className="ml-4 inline-flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+                href="tel:+49-123-456789"
+                className="ml-4 inline-flex items-center justify-center bg-green-700 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-green-800 transition-colors"
               >
-                (778) 658-0035
+                +49-123-456789
               </a>
             </div>
           </div>
@@ -80,8 +85,8 @@ const Navigation = ({
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
             <a
-              href="tel:+1(778)658-0035"
-              className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+              href="tel:+49-123-456789"
+              className="inline-flex items-center justify-center bg-green-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition-colors"
             >
               Call Now
             </a>
@@ -119,7 +124,7 @@ const Navigation = ({
                     push(link.url);
                     setIsMenuOpen(false);
                   }}
-                  className="block py-3 px-4 text-gray-900 hover:bg-gray-50 rounded-xl transition-colors"
+                  className="block py-3 px-4 text-gray-900 hover:bg-green-50 rounded-xl transition-colors"
                 >
                   {link.text}
                 </a>

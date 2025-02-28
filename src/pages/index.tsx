@@ -2,45 +2,46 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Navigation from "@/components/Navigation";
 import {
-  Phone,
+  Sprout,
   ArrowRight,
-  Ruler,
+  Leaf,
   Clock,
   CheckCircle2,
   Shield,
   Building2,
   Home,
   Check,
+  Phone,
 } from "lucide-react";
 import Image from "next/image";
 
-type CustomerType = "residential" | "commercial" | null;
+type CustomerType = "hobbyist" | "collector" | null;
 
 interface FormData {
   name: string;
   phone: string;
-  facilityType: string;
-  projectSize: string;
-  urgency: string;
+  experience: string;
+  interests: string;
+  contactPreference: string;
   email: string;
-  address: string;
-  projectDetails: string;
+  location: string;
+  inquiryDetails: string;
 }
 
-const VancouverDrywallLandingPage = () => {
+const HamburgSeedDispensaryLandingPage = () => {
   const [customerType, setCustomerType] = useState<CustomerType>(null);
-  const [facilityType, setFacilityType] = useState("");
-  const [urgency, setUrgency] = useState("");
-  const [projectSize, setProjectSize] = useState("");
+  const [experience, setExperience] = useState("");
+  const [contactPreference, setContactPreference] = useState("");
+  const [interests, setInterests] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState<
-    Pick<FormData, "name" | "phone" | "email" | "address" | "projectDetails">
+    Pick<FormData, "name" | "phone" | "email" | "location" | "inquiryDetails">
   >({
     name: "",
     phone: "",
     email: "",
-    address: "",
-    projectDetails: "",
+    location: "",
+    inquiryDetails: "",
   });
 
   const handleInputChange = (
@@ -60,15 +61,15 @@ const VancouverDrywallLandingPage = () => {
     const submissionData = {
       ...formData,
       customerType,
-      facilityType,
-      urgency,
-      projectSize,
+      experience,
+      contactPreference,
+      interests,
     };
     setShowSuccess(true);
   };
 
-  const handleEmergencyCall = () => {
-    window.location.href = "tel:+1(778)200-8827";
+  const handleContact = () => {
+    window.location.href = "tel:+49-123-456789";
     const contactForm = document.querySelector("#contactform");
     if (contactForm) {
       contactForm.scrollIntoView({ behavior: "smooth", inline: "nearest" });
@@ -77,68 +78,68 @@ const VancouverDrywallLandingPage = () => {
 
   // SEO-friendly data
   const pageTitle =
-    "Pro Wall Repairs & Finishing - AZ Vancouver & Burnaby | Expert Wall Services";
+    "Premium Cannabis Seeds Hamburg | Quality Collection & Genetic Preservation";
   const pageDescription =
-    "Professional wall repair and finishing services in Vancouver & Burnaby. Specializing in high-quality repairs, expert finishing, and flawless results for residential and commercial properties.";
+    "Hamburg's premier cannabis seed dispensary offering rare genetics, expert advice, and premium quality seeds for collectors and enthusiasts. Visit our St. Pauli location today.";
 
   const serviceFeatures = [
     {
-      icon: <Building2 className="w-6 h-6" />,
-      title: "Expert Team",
-      description: "Professional wall repair specialists",
+      icon: <Leaf className="w-6 h-6" />,
+      title: "Premium Genetics",
+      description: "Curated selection of quality strains",
     },
     {
-      icon: <Ruler className="w-6 h-6" />,
-      title: "Premium Finishes",
-      description: "Flawless surface finishing",
+      icon: <Sprout className="w-6 h-6" />,
+      title: "Expert Knowledge",
+      description: "Personalized guidance and education",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Reliable Service",
-      description: "On-time project completion",
+      description: "Discreet packaging and shipping",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Quality Assured",
-      description: "Satisfaction guaranteed",
+      description: "Lab-tested genetic verification",
     },
   ];
 
-  const serviceTypes = [
+  const productCategories = [
     {
-      title: "Wall Repairs",
+      title: "Autoflowering Seeds",
       points: [
-        "Damage restoration",
-        "Crack repairs",
-        "Hole patching",
-        "Surface preparation",
+        "Fast lifecycle varieties",
+        "Beginner-friendly options",
+        "Compact growing profiles",
+        "High-yield potential",
       ],
     },
     {
-      title: "Expert Finishing",
+      title: "Feminized Seeds",
       points: [
-        "Texture matching",
-        "Smooth finishing",
-        "Paint preparation",
-        "Premium materials",
+        "99% female guarantee",
+        "Premium photoperiod varieties",
+        "Stable genetics",
+        "Award-winning strains",
       ],
     },
     {
-      title: "Commercial Services",
+      title: "CBD-Rich Varieties",
       points: [
-        "Office renovations",
-        "Retail space repairs",
-        "Property maintenance",
-        "Multi-unit projects",
+        "Low-THC options",
+        "Therapeutic profiles",
+        "Balanced ratios",
+        "Unique terpene combinations",
       ],
     },
     {
-      title: "Residential Services",
+      title: "Limited Editions",
       points: [
-        "Home repairs",
-        "Basement finishing",
-        "Room renovations",
-        "Custom solutions",
+        "Rare landrace genetics",
+        "Exclusive collaborations",
+        "Heritage preservation",
+        "Collector's items",
       ],
     },
   ];
@@ -151,13 +152,13 @@ const VancouverDrywallLandingPage = () => {
         <meta name="description" content={pageDescription} />
         <meta
           name="keywords"
-          content="wall repairs vancouver, wall finishing, professional wall repair, surface finishing, vancouver wall repairs, burnaby wall repairs"
+          content="cannabis seeds hamburg, premium cannabis genetics, seed collection, autoflowering seeds, feminized seeds, CBD seeds, german seed bank"
         />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://vandrywall.com" />
-        <link rel="canonical" href="https://vandrywall.com" />
+        <meta property="og:url" content="https://hamburgseeds.de" />
+        <link rel="canonical" href="https://hamburgseeds.de" />
       </Head>
 
       <Navigation transparent />
@@ -168,38 +169,35 @@ const VancouverDrywallLandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="flex flex-col md:flex-row gap-12 items-center py-16">
             <div className="w-full md:w-1/2">
-              <div className="inline-block bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
-                Professional Wall Repairs &amp; Finishing Services
+              <div className="inline-block bg-green-900 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
+                Hamburg&apos;s Premier Seed Dispensary
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900">
-                Expert repairs.
-                <span className="block text-gray-900">Flawless finish.</span>
+                Premium genetics.
+                <span className="block text-green-700">
+                  Exceptional quality.
+                </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Vancouver &amp; Burnaby&apos;s trusted experts in wall repairs
-                and premium finishing. Quality workmanship guaranteed.
+                Hamburg&apos;s trusted source for premium cannabis seeds and
+                rare genetics. Collector-grade quality guaranteed.
               </p>
 
               <button
-                onClick={handleEmergencyCall}
-                className="group inline-flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all duration-300"
+                onClick={handleContact}
+                className="group inline-flex items-center justify-center gap-3 bg-green-700 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-800 transition-all duration-300"
               >
-                <Phone className="w-6 h-6" />
-                <span>Request a Quote</span>
+                <Sprout className="w-6 h-6" />
+                <span>Visit Our Dispensary</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
             <div className="w-full md:w-1/2">
               <div className="relative h-96">
-                <Image
-                  src="/photos/homepage/2.jpg"
-                  alt="Professional Wall Repairs & Finishing"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover rounded-xl"
-                  priority
-                />
+                <div className="absolute inset-0 bg-green-100 rounded-xl flex items-center justify-center">
+                  <Sprout className="w-32 h-32 text-green-700 opacity-30" />
+                </div>
                 <div className="absolute inset-0 rounded-xl ring-1 ring-black/10" />
               </div>
             </div>
@@ -212,10 +210,10 @@ const VancouverDrywallLandingPage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-900">
-              Professional Wall Services
+              Premium Seed Collection
             </h2>
             <p className="text-lg text-gray-600">
-              Expert repairs and premium finishing in Vancouver &amp; Burnaby
+              Expert-curated genetics and personalized service in Hamburg
             </p>
           </div>
 
@@ -225,7 +223,7 @@ const VancouverDrywallLandingPage = () => {
                 key={index}
                 className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="text-gray-900 mb-4">{feature.icon}</div>
+                <div className="text-green-700 mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
@@ -234,31 +232,31 @@ const VancouverDrywallLandingPage = () => {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Products Grid */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-900">
-              Our Services
+              Our Seed Collection
             </h2>
             <p className="text-lg text-gray-600">
-              Comprehensive repair and finishing solutions
+              Diverse varieties for collectors and enthusiasts
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {serviceTypes.map((type, index) => (
+            {productCategories.map((category, index) => (
               <div
                 key={index}
                 className="bg-white p-8 rounded-xl hover:shadow-lg transition-shadow duration-300"
               >
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                  {type.title}
+                  {category.title}
                 </h3>
                 <ul className="space-y-3">
-                  {type.points.map((point, pointIndex) => (
+                  {category.points.map((point, pointIndex) => (
                     <li key={pointIndex} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-gray-900" />
+                      <CheckCircle2 className="w-5 h-5 text-green-700" />
                       <span className="text-gray-600">{point}</span>
                     </li>
                   ))}
@@ -270,29 +268,35 @@ const VancouverDrywallLandingPage = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 bg-green-900">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Quality Wall Repairs &amp; Finishing
+            Hamburg&apos;s Premier Seed Dispensary
           </h2>
-          <p className="text-xl mb-8 text-gray-300">
-            Professional services in Vancouver &amp; Burnaby
+          <p className="text-xl mb-8 text-green-100">
+            Visit our St. Pauli location for expert advice and premium
+            selections
           </p>
           <button
-            onClick={handleEmergencyCall}
-            className="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-full text-xl font-bold hover:bg-gray-100 transition-all duration-300"
+            onClick={handleContact}
+            className="group inline-flex items-center justify-center gap-3 bg-white text-green-900 px-8 py-4 rounded-full text-xl font-bold hover:bg-gray-100 transition-all duration-300"
           >
             <Phone className="w-6 h-6" />
-            <span>Call (778) 200-8827</span>
+            <span>Call +49-123-456789</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </section>
+
+      {/* Success Modal Component */}
+      {showSuccess && (
+        <SuccessModal email={formData.email} setShowSuccess={setShowSuccess} />
+      )}
     </div>
   );
 };
 
-const SuccessScreen = ({
+const SuccessModal = ({
   email,
   setShowSuccess,
 }: {
@@ -300,27 +304,33 @@ const SuccessScreen = ({
   setShowSuccess: (val: boolean) => void;
 }) => {
   return (
-    <div className="p-8 flex flex-col items-center justify-center space-y-6 min-h-[400px]">
-      <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4">
-        <Check className="w-8 h-8 text-green-500" />
-      </div>
-      <h3 className="text-2xl font-medium text-gray-900">Message received</h3>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl max-w-md w-full">
+        <div className="p-8 flex flex-col items-center justify-center space-y-6">
+          <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4">
+            <Check className="w-8 h-8 text-green-500" />
+          </div>
+          <h3 className="text-2xl font-medium text-gray-900">
+            Inquiry received
+          </h3>
 
-      <div className="space-y-2 text-center">
-        <p className="text-gray-600">We&apos;ll get back to you shortly</p>
-        <p className="text-gray-500 text-sm">
-          Response will be sent to office@vandrywall.com
-        </p>
-      </div>
+          <div className="space-y-2 text-center">
+            <p className="text-gray-600">We&apos;ll get back to you shortly</p>
+            <p className="text-gray-500 text-sm">
+              Response will be sent to {email || "info@hamburgseeds.de"}
+            </p>
+          </div>
 
-      <button
-        onClick={() => setShowSuccess(false)}
-        className="mt-8 bg-gray-900 text-white px-8 py-3 rounded-full hover:bg-gray-800"
-      >
-        Done
-      </button>
+          <button
+            onClick={() => setShowSuccess(false)}
+            className="mt-8 bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800"
+          >
+            Done
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default VancouverDrywallLandingPage;
+export default HamburgSeedDispensaryLandingPage;
