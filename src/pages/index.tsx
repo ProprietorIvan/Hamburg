@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Navigation from "@/components/Navigation";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticProps } from "next";
 import {
   Sprout,
   ArrowRight,
@@ -29,6 +31,8 @@ interface FormData {
 }
 
 const HamburgSeedDispensaryLandingPage = () => {
+  const { t } = useTranslation("common");
+
   const [customerType, setCustomerType] = useState<CustomerType>(null);
   const [experience, setExperience] = useState("");
   const [contactPreference, setContactPreference] = useState("");
@@ -77,69 +81,73 @@ const HamburgSeedDispensaryLandingPage = () => {
   };
 
   // SEO-friendly data
-  const pageTitle =
-    "Premium Cannabis Seeds Hamburg | Quality Collection & Genetic Preservation";
-  const pageDescription =
-    "Hamburg's premier cannabis seed dispensary offering rare genetics, expert advice, and premium quality seeds for collectors and enthusiasts. Visit our St. Pauli location today.";
+  const pageTitle = t(
+    "seoTitle",
+    "Premium Cannabis Seeds Hamburg | Quality Collection & Genetic Preservation"
+  );
+  const pageDescription = t(
+    "seoDescription",
+    "Hamburg's premier cannabis seed dispensary offering rare genetics, expert advice, and premium quality seeds for collectors and enthusiasts. Visit our St. Pauli location today."
+  );
 
   const serviceFeatures = [
     {
       icon: <Leaf className="w-6 h-6" />,
-      title: "Premium Genetics",
-      description: "Curated selection of quality strains",
+      title: t("premiumGenetics"),
+      description: t("geneticsDescription"),
     },
     {
       icon: <Sprout className="w-6 h-6" />,
-      title: "Expert Knowledge",
-      description: "Personalized guidance and education",
+      title: t("expertKnowledge"),
+      description: t("knowledgeDescription"),
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Reliable Service",
-      description: "Discreet packaging and shipping",
+      title: t("reliableService"),
+      description: t("serviceDescription"),
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Quality Assured",
-      description: "Lab-tested genetic verification",
+      title: t("qualityAssured"),
+      description: t("qualityDescription"),
     },
   ];
 
   const productCategories = [
     {
-      title: "Autoflowering Seeds",
+      title: t("autoflowering"),
       points: [
-        "Fast lifecycle varieties",
-        "Beginner-friendly options",
-        "Compact growing profiles",
-        "High-yield potential",
+        t("autoPoint1", "Fast lifecycle varieties"),
+        t("autoPoint2", "Beginner-friendly options"),
+        t("autoPoint3", "Compact growing profiles"),
+        t("autoPoint4", "High-yield potential"),
       ],
     },
     {
-      title: "Feminized Seeds",
+      title: t("feminized"),
       points: [
-        "99% female guarantee",
-        "Premium photoperiod varieties",
-        "Stable genetics",
-        "Award-winning strains",
+        t("femPoint1", "99% female guarantee"),
+        t("femPoint2", "Premium photoperiod varieties"),
+        t("femPoint3", "Stable genetics"),
+        t("femPoint4", "Award-winning strains"),
       ],
     },
     {
-      title: "CBD-Rich Varieties",
+      title: t("cbdRich"),
       points: [
-        "Low-THC options",
-        "Therapeutic profiles",
-        "Balanced ratios",
-        "Unique terpene combinations",
+        t("cbdPoint1", "Low-THC options"),
+        t("cbdPoint2", "Therapeutic profiles"),
+        t("cbdPoint3", "Balanced ratios"),
+        t("cbdPoint4", "Unique terpene combinations"),
       ],
     },
     {
-      title: "Limited Editions",
+      title: t("limitedEditions"),
       points: [
-        "Rare landrace genetics",
-        "Exclusive collaborations",
-        "Heritage preservation",
-        "Collector's items",
+        t("limitedPoint1", "Rare landrace genetics"),
+        t("limitedPoint2", "Exclusive collaborations"),
+        t("limitedPoint3", "Heritage preservation"),
+        t("limitedPoint4", "Collector's items"),
       ],
     },
   ];
@@ -152,7 +160,10 @@ const HamburgSeedDispensaryLandingPage = () => {
         <meta name="description" content={pageDescription} />
         <meta
           name="keywords"
-          content="cannabis seeds hamburg, premium cannabis genetics, seed collection, autoflowering seeds, feminized seeds, CBD seeds, german seed bank"
+          content={t(
+            "seoKeywords",
+            "cannabis seeds hamburg, premium cannabis genetics, seed collection, autoflowering seeds, feminized seeds, CBD seeds, german seed bank"
+          )}
         />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
@@ -161,8 +172,6 @@ const HamburgSeedDispensaryLandingPage = () => {
         <link rel="canonical" href="https://hamburgseeds.de" />
       </Head>
 
-      <Navigation transparent />
-
       {/* Hero Section */}
       <section className="relative pt-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="absolute inset-0 bg-grid-gray-100 bg-[size:32px_32px] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
@@ -170,17 +179,16 @@ const HamburgSeedDispensaryLandingPage = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center py-16">
             <div className="w-full md:w-1/2">
               <div className="inline-block bg-green-900 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
-                Hamburg&apos;s Premier Seed Dispensary
+                {t("heroTagline", "Hamburg's Premier Seed Dispensary")}
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900">
-                Premium genetics.
+                {t("heroTitle")}
                 <span className="block text-green-700">
-                  Exceptional quality.
+                  {t("heroSubtitle")}
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Hamburg&apos;s trusted source for premium cannabis seeds and
-                rare genetics. Collector-grade quality guaranteed.
+                {t("heroDescription")}
               </p>
 
               <button
@@ -188,7 +196,7 @@ const HamburgSeedDispensaryLandingPage = () => {
                 className="group inline-flex items-center justify-center gap-3 bg-green-700 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-800 transition-all duration-300"
               >
                 <Sprout className="w-6 h-6" />
-                <span>Visit Our Dispensary</span>
+                <span>{t("ctaButton")}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -210,11 +218,9 @@ const HamburgSeedDispensaryLandingPage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-900">
-              Premium Seed Collection
+              {t("featuresTitle")}
             </h2>
-            <p className="text-lg text-gray-600">
-              Expert-curated genetics and personalized service in Hamburg
-            </p>
+            <p className="text-lg text-gray-600">{t("featuresSubtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -237,11 +243,9 @@ const HamburgSeedDispensaryLandingPage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-900">
-              Our Seed Collection
+              {t("collectionTitle")}
             </h2>
-            <p className="text-lg text-gray-600">
-              Diverse varieties for collectors and enthusiasts
-            </p>
+            <p className="text-lg text-gray-600">{t("collectionSubtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -271,18 +275,15 @@ const HamburgSeedDispensaryLandingPage = () => {
       <section className="py-16 bg-green-900">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Hamburg&apos;s Premier Seed Dispensary
+            {t("callCta")}
           </h2>
-          <p className="text-xl mb-8 text-green-100">
-            Visit our St. Pauli location for expert advice and premium
-            selections
-          </p>
+          <p className="text-xl mb-8 text-green-100">{t("visitCta")}</p>
           <button
             onClick={handleContact}
             className="group inline-flex items-center justify-center gap-3 bg-white text-green-900 px-8 py-4 rounded-full text-xl font-bold hover:bg-gray-100 transition-all duration-300"
           >
             <Phone className="w-6 h-6" />
-            <span>Call +49-123-456789</span>
+            <span>{t("callButton")}</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -303,6 +304,8 @@ const SuccessModal = ({
   email: string;
   setShowSuccess: (val: boolean) => void;
 }) => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl max-w-md w-full">
@@ -311,13 +314,16 @@ const SuccessModal = ({
             <Check className="w-8 h-8 text-green-500" />
           </div>
           <h3 className="text-2xl font-medium text-gray-900">
-            Inquiry received
+            {t("inquiryReceived", "Inquiry received")}
           </h3>
 
           <div className="space-y-2 text-center">
-            <p className="text-gray-600">We&apos;ll get back to you shortly</p>
+            <p className="text-gray-600">
+              {t("getBackShortly", "We'll get back to you shortly")}
+            </p>
             <p className="text-gray-500 text-sm">
-              Response will be sent to {email || "info@hamburgseeds.de"}
+              {t("responseSentTo", "Response will be sent to")}{" "}
+              {email || "info@hamburgseeds.de"}
             </p>
           </div>
 
@@ -325,12 +331,22 @@ const SuccessModal = ({
             onClick={() => setShowSuccess(false)}
             className="mt-8 bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800"
           >
-            Done
+            {t("done", "Done")}
           </button>
         </div>
       </div>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || "en", ["common"])),
+      // This prop will be passed to the page component as props
+      transparentHeader: true,
+    },
+  };
 };
 
 export default HamburgSeedDispensaryLandingPage;
