@@ -44,7 +44,13 @@ interface FeatureCardProps {
   delay: number;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, gradient, delay }) => (
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  icon,
+  title,
+  description,
+  gradient,
+  delay,
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +74,13 @@ interface CategoryCardProps {
   delay: number;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ title, points, icon, accentColor, delay }) => (
+const CategoryCard: React.FC<CategoryCardProps> = ({
+  title,
+  points,
+  icon,
+  accentColor,
+  delay,
+}) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -76,14 +88,18 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ title, points, icon, accent
     viewport={{ once: true }}
     className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
   >
-    <div className={`${accentColor} w-12 h-12 rounded-full flex items-center justify-center mb-6`}>
+    <div
+      className={`${accentColor} w-12 h-12 rounded-full flex items-center justify-center mb-6`}
+    >
       {icon}
     </div>
     <h3 className="text-2xl font-bold mb-4 text-gray-900">{title}</h3>
     <ul className="space-y-3">
       {points.map((point, pointIndex) => (
         <li key={pointIndex} className="flex items-center gap-3">
-          <CheckCircle2 className={`w-5 h-5 ${accentColor.replace('bg-', 'text-')}`} />
+          <CheckCircle2
+            className={`w-5 h-5 ${accentColor.replace("bg-", "text-")}`}
+          />
           <span className="text-gray-600">{point}</span>
         </li>
       ))}
@@ -98,7 +114,12 @@ interface TestimonialProps {
   delay: number;
 }
 
-const Testimonial: React.FC<TestimonialProps> = ({ quote, author, location, delay }) => (
+const Testimonial: React.FC<TestimonialProps> = ({
+  quote,
+  author,
+  location,
+  delay,
+}) => (
   <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
@@ -185,28 +206,32 @@ const HamburgSeedDispensaryLandingPage = () => {
     {
       icon: <Dna className="w-6 h-6" />,
       title: "Genetic Excellence",
-      description: "Meticulously curated selection of premium genetics with verified lineage",
+      description:
+        "Meticulously curated selection of premium genetics with verified lineage",
       gradient: "bg-gradient-to-br from-green-700 to-green-500",
       delay: 1,
     },
     {
       icon: <FlaskConical className="w-6 h-6" />,
       title: "Laboratory Verified",
-      description: "Every seed batch scientifically tested for genetic purity and viability",
+      description:
+        "Every seed batch scientifically tested for genetic purity and viability",
       gradient: "bg-gradient-to-br from-blue-700 to-blue-500",
       delay: 2,
     },
     {
       icon: <Database className="w-6 h-6" />,
       title: "Genetic Archive",
-      description: "Preserving rare landrace genetics and heritage varieties for the future",
+      description:
+        "Preserving rare landrace genetics and heritage varieties for the future",
       gradient: "bg-gradient-to-br from-purple-700 to-purple-500",
       delay: 3,
     },
     {
       icon: <Sparkles className="w-6 h-6" />,
       title: "Expert Guidance",
-      description: "Personalized consultation with certified genetic specialists",
+      description:
+        "Personalized consultation with certified genetic specialists",
       gradient: "bg-gradient-to-br from-amber-700 to-amber-500",
       delay: 4,
     },
@@ -265,21 +290,24 @@ const HamburgSeedDispensaryLandingPage = () => {
 
   const testimonials = [
     {
-      quote: "The genetic diversity and quality available here is unmatched. Their autoflowering collection transformed my small-space cultivation.",
+      quote:
+        "The genetic diversity and quality available here is unmatched. Their autoflowering collection transformed my small-space cultivation.",
       author: "A. Müller",
       location: "Berlin Collector",
       delay: 1,
     },
     {
-      quote: "Their CBD varieties have consistent chemotypes that I haven't found anywhere else in Germany. Exceptional service too.",
+      quote:
+        "Their CBD varieties have consistent chemotypes that I haven't found anywhere else in Germany. Exceptional service too.",
       author: "T. Schmidt",
       location: "Munich Enthusiast",
       delay: 2,
     },
     {
-      quote: "As a collector of rare genetics, their limited editions are treasures. Documentation and genetic verification is impressive.",
+      quote:
+        "As a collector of rare genetics, their limited editions are treasures. Documentation and genetic verification is impressive.",
       author: "M. Weber",
-      location: "Hamburg Collector",
+      location: "Hamburg Collectors",
       delay: 3,
     },
   ];
@@ -338,8 +366,9 @@ const HamburgSeedDispensaryLandingPage = () => {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-                Experience the future of cannabis genetics – meticulously selected, 
-                scientifically verified, and expertly preserved for collectors and enthusiasts.
+                Experience the future of cannabis genetics – meticulously
+                selected, scientifically verified, and expertly preserved for
+                collectors and enthusiasts.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -375,7 +404,7 @@ const HamburgSeedDispensaryLandingPage = () => {
                 <div className="absolute top-[10%] right-[10%] w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
                 <div className="absolute top-[20%] left-[20%] w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-[20%] left-[35%] w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-                
+
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-64 h-64 md:w-80 md:h-80">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-50 to-green-100 shadow-xl"></div>
@@ -427,8 +456,8 @@ const HamburgSeedDispensaryLandingPage = () => {
                 The Science of <span className="text-green-600">Quality</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our commitment to genetic excellence is backed by scientific rigor and 
-                decades of botanical expertise
+                Our commitment to genetic excellence is backed by scientific
+                rigor and decades of botanical expertise
               </p>
             </motion.div>
           </div>
@@ -462,8 +491,9 @@ const HamburgSeedDispensaryLandingPage = () => {
               Exceptional <span className="text-green-600">Genetics</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our curated collection represents the pinnacle of cannabis breeding, 
-              selected for collectors and enthusiasts who demand excellence
+              Our curated collection represents the pinnacle of cannabis
+              breeding, selected for collectors and enthusiasts who demand
+              excellence
             </p>
           </motion.div>
 
@@ -563,8 +593,14 @@ const HamburgSeedDispensaryLandingPage = () => {
                     <span className="text-green-600 font-semibold">1</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl mb-1">Genetic Selection</h3>
-                    <p className="text-gray-600">Our experts travel globally to source exceptional genetic material, evaluating stability, expression, and uniqueness.</p>
+                    <h3 className="font-semibold text-xl mb-1">
+                      Genetic Selection
+                    </h3>
+                    <p className="text-gray-600">
+                      Our experts travel globally to source exceptional genetic
+                      material, evaluating stability, expression, and
+                      uniqueness.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -572,8 +608,14 @@ const HamburgSeedDispensaryLandingPage = () => {
                     <span className="text-green-600 font-semibold">2</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl mb-1">Laboratory Verification</h3>
-                    <p className="text-gray-600">Each genetic line undergoes rigorous testing for viability, germination rates, and genetic markers to ensure authenticity.</p>
+                    <h3 className="font-semibold text-xl mb-1">
+                      Laboratory Verification
+                    </h3>
+                    <p className="text-gray-600">
+                      Each genetic line undergoes rigorous testing for
+                      viability, germination rates, and genetic markers to
+                      ensure authenticity.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -581,8 +623,14 @@ const HamburgSeedDispensaryLandingPage = () => {
                     <span className="text-green-600 font-semibold">3</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl mb-1">Documentation & Preservation</h3>
-                    <p className="text-gray-600">Complete genetic profiles are created, documenting lineage, characteristics, and preservation protocols for future generations.</p>
+                    <h3 className="font-semibold text-xl mb-1">
+                      Documentation & Preservation
+                    </h3>
+                    <p className="text-gray-600">
+                      Complete genetic profiles are created, documenting
+                      lineage, characteristics, and preservation protocols for
+                      future generations.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -590,8 +638,14 @@ const HamburgSeedDispensaryLandingPage = () => {
                     <span className="text-green-600 font-semibold">4</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl mb-1">Expert Consultation</h3>
-                    <p className="text-gray-600">Our specialists provide personalized guidance, matching collectors with varieties that meet their specific interests and requirements.</p>
+                    <h3 className="font-semibold text-xl mb-1">
+                      Expert Consultation
+                    </h3>
+                    <p className="text-gray-600">
+                      Our specialists provide personalized guidance, matching
+                      collectors with varieties that meet their specific
+                      interests and requirements.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -616,7 +670,8 @@ const HamburgSeedDispensaryLandingPage = () => {
             Experience Genetic Excellence
           </h2>
           <p className="text-xl mb-8 text-green-100">
-            Visit our boutique in St. Pauli for expert consultation and access to our premium genetic library
+            Visit our boutique in St. Pauli for expert consultation and access
+            to our premium genetic library
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
